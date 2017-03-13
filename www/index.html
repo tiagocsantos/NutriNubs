@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<!--HTML5 doctype-->
+<html>
+
+<head>
+
+    <title>App Framework Kitchen Sink</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link rel="stylesheet" type="text/css" href="lib/appframework/icons.css" />
+    <link rel="stylesheet" type="text/css" href="lib/appframework/af.ui.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        
+    <script type="text/javascript" charset="utf-8" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lib/fastclick.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lib/appframework/appframework.ui.min.js"></script>
+        
+    <script src='cordova.js'></script>
+    <script type="text/javascript" src="js/camera.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/predict.js"></script>
+    <script type="text/javascript" src="https://sdk.clarifai.com/js/clarifai-latest.js"></script>
+    <script type="text/javascript" src="js/rainbowvis.js"></script>
+          
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <script>
+        var CLIENT_ID = 'bEWD3leMpYmVpQCX-f9dVFDmKQ5QkSD3LSBcDMKE';
+        var CLIENT_SECRET = '8osqxy1EcVsxr3qvo46LHQ_8MiOnw4A9HbmgTeOx';
+        var app = new Clarifai.App(CLIENT_ID,CLIENT_SECRET);
+    </script>
+
+</head>
+
+<body>
+    <div id="splashscreen" class='ui-loader heavy'>
+        App Framework
+        <br>
+        <br>
+        <span class='ui-icon ui-icon-loading spin'></span>
+        <h1>Starting app</h1>
+    </div>
+
+    <div class="view splitview">
+        
+        <header>
+            <a class="menuButton" data-left-menu="left" data-transition="cover" style="float:left"></a>
+            <h1 class="title">Title</h1>
+        </header>
+        
+        <div class="pages">
+            <div class="panel" id="main" data-title="Main" data-selected="true">
+                <img id="nutrinoobz" src="imgs/NutriNubz.png">
+            </div>
+            
+            <div class="panel" id="page2" data-title="Scanner">                
+                <div style="margin-top:2%; margin-left:0; margin-bottom:10px; clear:left; float:left">
+                <img id="img_preview" src="" width="400"/>
+                </div>
+                <div></div>
+                <h4 id="conceptInfo"></h4>
+                <div id="nutriInfo" style="display:none">
+                    <div id="item_name">
+                        <h4 >Name: </h4>   
+                    </div>
+                    <div id="nf_serving_weight_grams">
+                        <h4>Weight: </h4>
+                    </div>
+                    <div id="nf_calories">
+                        <h4 >Calories: </h4>
+                        <div class="circle"></div>
+                    </div>
+                    <div id="nf_total_fat">
+                        <h4>Total Fat:</h4>
+                        <div class="circle"></div>
+                    </div>
+                    <div id="nf_saturated_fat">
+                        <h4 >Staturated Fat: </h4>
+                        <div class="circle"></div>
+                    </div>
+                    <div id="nf_cholesterol">
+                        <h4 >Cholesterol: </h4>
+                        <div class="circle"></div>
+                    </div>
+                    <div id="nf_sodium">
+                        <h4 >Sodium: </h4>
+                        <div class="circle"></div>
+                    </div>
+                    <div id="nf_sugars">
+                        <h4 >Sugars: </h4>
+                        <div class="circle"></div>
+                    </div>
+                    <div id="nf_protein">
+                        <h4 >Protein: </h4>
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div id="concepts" class="conceptBox"></div>
+            </div>
+         
+            <div class="panel" id="page3" data-title="Puzzles">
+                <div id="progressPuzzles">
+                    <h4 class="tittleH">In Progress</h4>
+                
+                    <a href="#page6"  onclick="$.afui.clearHistory();" style="text-decoration:none;">
+                        <figure id = "onGoingFigure">
+                            <img id="onGoingPuzzle" src="imgs/puzzle.png" width="100" height="100">      
+                            <figcaption>Know Your Proteins!</figcaption>         
+                        </figure>
+                    </a>
+                </div>
+                
+                <div id="concludedPuzzles">
+                    <h4 class="tittleH" id="concluded"> Concluded</h4>
+                    <img class="puzzleIcon done"  src="imgs/puzzle.png" >
+                    <img class="puzzleIcon done" src="imgs/puzzle.png" >
+                    <img class="puzzleIcon done" src="imgs/puzzle.png" >
+                </div>
+            </div>
+            <div class="panel" id="page4" data-title="CookBook">
+                <div class="photo">
+                    <div class="photobar">
+                        <h3 class="user">User1</h3>
+                    </div>
+                     <div class="image-container">
+                        <img class="instaimage" src="imgs/cookbook1.jpg">
+                        <div class="after"><p>Something</p><p>Something</p><p>Something</p><p>Something</p><p>Something</p><p>Something</p></div>
+                    </div>
+                    <div class="photobar"> 
+                        <h5> Cenas </h5>
+                    </div>
+                </div>
+                <div class="photo">
+                    <div class="photobar">
+                        <h3 class="user">User2</h3>
+                    </div>
+                    <div class="image-container">
+                        <img class="instaimage" src="imgs/cookbook2.jpg">
+                        <div class="after"><p>Something</p><p>Something</p><p>Something</p><p>Something</p><p>Something</p><p>Something</p></div>
+                    </div>
+                    <div class="photobar"> 
+                        <h5> Cenas </h5>
+                    </div>
+                </div>
+                <div class="photo">
+                    <div class="photobar">
+                        <h3 class="user">User3</h3>
+                    </div>
+                     <div class="image-container">
+                        <img class="instaimage" src="imgs/cookbook3.jpg">
+                       <div class="after"><p>Something</p><p>Something</p><p>Something</p><p>Something</p><p>Something</p><p>Something</p></div>
+                    </div>
+                    <div class="photobar">
+                        <h5> Cenas </h5>
+                    </div>
+                </div>
+            </div>
+            <div class="panel" id="page5" data-title="Recipes">
+            </div>
+            <div class="panel" id="page6" data-title="Puzzle">
+                <h1>Scan 5 High Protein Ingredients</h1>
+                <div class="progress">
+                    <div id="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                        <span class="sr-only">70% Complete</span>
+                    </div>
+                </div>
+                <p>hint: ....</p>
+                <div style="text-align:center; margin-top:10%;">
+                    <img class=protein id="protein1" src= "imgs/question_mark.png">
+                    <img class=protein id="protein2" src= "imgs/question_mark.png">
+                    <img class=protein id="protein3" src= "imgs/question_mark.png">
+                    <img class=protein id="protein4" src= "imgs/question_mark.png">
+                    <img class=protein id="protein5" src= "imgs/question_mark.png">
+                </div>
+            </div> 
+        </div>
+
+        <nav id="left">
+            <div class="view active">
+                <header>
+                    <h1 class="title" >Menu</h1>
+                </header>
+                <div class="pages">
+                    <div class="panel active" id="navPage1" data-title="Foobar">
+                        <ul class="list">
+                            <li><a href="#main" onclick="$.afui.clearHistory();">Home</a></li>
+                            <li><a href="#page2" onclick="capturePhoto(); $.afui.clearHistory();">Scanner</a></li>
+                            <li><a href="#page3" onclick="$.afui.clearHistory();">Puzzles</a></li>
+                            <li><a href="#page4" onclick="$.afui.clearHistory();">CookBook</a></li>
+                            <li><a href="#page5" onclick="$.afui.clearHistory();">Recipes</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </div>
+</body>
+
+</html>
